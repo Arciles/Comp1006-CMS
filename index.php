@@ -15,5 +15,6 @@ require "header.php";
 	</main>
 </div><!-- end of .container -->
 <?php
+for ($index = 0; $index < 60; $index++){ echo "<br>"; }
 require "footer.php";
 ?>

@@ -1,6 +1,6 @@
-<footer>
+<footer class="footer navbar-fixed-bottom">
 	<div class="container">
-		This website created by Esat IBIS.
+		<p>This website created by Esat IBIS.</p>
 	</div>
 </footer>
 
