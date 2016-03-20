@@ -14,3 +14,18 @@ footer p {
 	line-height: 60px;
 	font-size: 1.1em;
 }
+
+fieldset {
+	border: 1px groove #2B3E51 ;
+	border-radius: 5px;
+	padding: 0 1.4em 1.4em 1.4em ;
+	margin: 0 0 1.5em 0 ;
+}
+fieldset legend {
+	width: inherit;
+	padding: 0 5px; /* To give a bit of padding on the left and right */
+	border-bottom: none;
+	font-size: 1.2em ;
+	font-weight: bold ;
+	text-align: left ;
+}
