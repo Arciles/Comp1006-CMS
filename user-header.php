@@ -20,8 +20,15 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="<?php echo ($pageName == "login") ? "active" : "" ;?>"><a href="login.php" title="Link to the login page"><i class="fa fa-user"></i> Login</a></li>
-				<li class="<?php echo ($pageName == "register") ? "active" : "" ;?>"><a href="register.php" title="link to the register page"><i class="fa fa-user-plus"></i> Register</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hashtag"></i> <?php session_start(); echo $_SESSION['fullname']; ?> <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
+						<li><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="log-out.php"><i class="fa fa-times"></i> Log out</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>

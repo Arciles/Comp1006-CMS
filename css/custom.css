@@ -35,3 +35,12 @@ label {
 label#warning {
 	display: none;
 }
+.panel {
+	margin-top: 3em;
+}
+.panel-info {
+	border-color: #2B3E51;
+}
+a.btn-danger {
+	margin-right: 20px;
+}

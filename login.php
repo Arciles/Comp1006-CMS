@@ -14,15 +14,20 @@ require "header.php";
 	<main>
 		<div class="row">
 			<div class="col-lg-6 col-lg-offset-3">
-				<form method="post" action="login-user.php">
-					<div class="form-group">
-						<label for="username">User Name</label>
-						<input type="text" class="form-control" name="username" id="username" placeholder="JaneDoe123" required>
-						<label for="password">Password</label>
-						<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+				<div class="panel panel-info">
+					<div class="panel-body">
+						<form method="post" action="login-user.php">
+							<div class="form-group">
+								<label for="username">User Name</label>
+								<input type="text" class="form-control" name="username" id="username" placeholder="JaneDoe123" required>
+								<label for="password">Password</label>
+								<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+							</div>
+							<button type="submit" class="btn btn-primary pull-right">Login</button>
+							<a href="index.php" class="btn btn-danger pull-right">Cancel</a>
+						</form>
 					</div>
-					<button type="submit" class="btn btn-primary pull-right">Login</button>
-				</form>
+				</div>
 			</div>
 		</div>
 	</main>
