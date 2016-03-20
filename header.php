@@ -20,8 +20,8 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="login.php" title="Link to the login page"><i class="fa fa-sign-in"></i> Login</a></li>
-				<li><a href="register.php" title="link to the register page"><i class="fa fa-user-plus"></i> Register</a></li>
+				<li class="<?php echo ($pageName == "login") ? "active" : "" ;?>"><a href="login.php" title="Link to the login page"><i class="fa fa-sign-in"></i> Login</a></li>
+				<li class="<?php echo ($pageName == "register") ? "active" : "" ;?>"><a href="register.php" title="link to the register page"><i class="fa fa-user-plus"></i> Register</a></li>
 			</ul>
 		</div>
 	</div>

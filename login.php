@@ -6,7 +6,8 @@
  * Time: 7:52 PM
  */
 
-$pageTitle = "Login | Arciles Inc.";
+$pageTitle = "Login Page | Arciles Inc.";
+$pageName = "login";
 require "header.php";
 
 require "footer.php";
