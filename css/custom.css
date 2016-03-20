@@ -32,3 +32,6 @@ fieldset legend {
 label {
 	margin-top: 2px;
 }
+label#warning {
+	display: none;
+}

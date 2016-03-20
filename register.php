@@ -23,6 +23,7 @@ require "header.php";
 							<input type="text" class="form-control" name="password" id="password" placeholder="Password" required>
 							<label for="confirm">Confirm Password</label>
 							<input type="text" class="form-control" name="confirm" id="confirm" placeholder="Confirm Password" required>
+							<label id="warning" class="label-warning">Your password needs to mach!!!</label>
 						</div>
 					</fieldset>
 					<fieldset>
@@ -42,4 +43,5 @@ require "header.php";
 		</div>
 	</main>
 </div>
+<script src="js/custom.js"></script>
 <?php require "footer.php"; ?>
