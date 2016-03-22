@@ -46,7 +46,7 @@ require "user-header.php";
 							<td>{$row['email']}</td>
 							<td>{$row['birthday']}</td>
 							<td><a href='register.php?id={$row['user_id']}' class='btn btn-warning'>Edit</a></td>
-							<td><a href='delete-user.php' class='btn btn-danger confirmation'>Delete</a></td>
+							<td><a href='delete-user.php?id={$row['user_id']}' class='btn btn-danger confirmation'>Delete</a></td>
 						</tr>";
 			}
 			?>
