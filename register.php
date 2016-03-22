@@ -61,7 +61,7 @@ if (!empty($_GET['id']) && !empty($_SESSION['fullname'])){
 							<label for="fullname">Full Name</label>
 							<input type="text" class="form-control" name="fullname" id="fullname" placeholder="John Doe" value="<?php echo $fullName?>">
 							<label for="email">E-mail</label>
-							<input type="email" class="form-control" name="email" id="email" placeholder="example123@example.ca" value="<?php echo $email?>">
+							<input type="email" class="form-control" name="email" id="email" placeholder="example123@example.ca" required value="<?php echo $email?>">
 							<label for="birthday">Birthday</label>
 							<input type="date" class="form-control" name="birthday" id="birthday" max="<?php echo date('Y-m-d'); ?>" value="<?php echo $birthday?>">
 							<input type="hidden" name="user_id" value="<?php echo $userId?>">
@@ -73,5 +73,4 @@ if (!empty($_GET['id']) && !empty($_SESSION['fullname'])){
 		</div>
 	</main>
 </div>
-<script src="js/custom.js"></script>
 <?php require "footer.php"; ?>

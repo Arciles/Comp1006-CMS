@@ -1,4 +1,4 @@
-D<?php
+<?php
 /**
  * Created by PhpStorm.
  * User: esattahaibis
@@ -21,34 +21,50 @@ $fullName = $_POST["fullname"];
 $email = $_POST["email"];
 $birthday = $_POST["birthday"];
 $user_id = $_POST['user_id'];
+$errMassage = "";
 $flagEdit = false;
 $flagGoodToGo = true;
 // Check necessary variables. Prompt an error if something is wrong
 if (empty($userName)) {
-	echo "<p>User name is required</p>";
+	$errMassage .= "<br>User name is required";
 	$flagGoodToGo = false;
 }
 if (empty($password)) {
-	echo "<p>Password name is required</p>";
+	$errMassage .= " <br>Password is required";
 	$flagGoodToGo = false;
 }
 else if ($password != $confirm) {
-	echo "<p>Confirm your password!</p>";
+	$errMassage .= "<br>Confirm your password!";
 	$flagGoodToGo = false;
 }
-if (!is_numeric($user_id)){
-	echo "<p>User id is corrupted please try again!</p>";
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	$errMassage .= "<br>This ($email) email address is invalid. Please enter a valid email address.";
 	$flagGoodToGo = false;
-} else {
+}
+if (!empty($user_id)) {
 	$flagEdit = true;
+}
+
+// open db connection and check that email is already registered
+require_once "db-connection.php";
+$querry = "SELECT * FROM dbt_users WHERE email = :email OR username = :username";
+$check = $conn ->prepare($querry);
+$check -> bindParam(":email",$email,PDO::PARAM_STR);
+$check -> bindParam(":username",$userName,PDO::PARAM_STR);
+$check -> execute();
+$count = $check->rowCount();
+if($count == 0){
+	$flagGoodToGo = true;
+	var_dump($check->rowCount());
+} else {
+	$errMassage .= "Email or User name is already in use.";
+	$flagGoodToGo = false;
 }
 
 // Proceed to save operation if everything is Okay
 if ($flagGoodToGo) {
-	// Hash the password and call db connection part
+	// Hash the password
 	$passwordHash = hash("sha512", $password);
-	require_once "db-connection.php";
-
 	try {
 
 		if ($flagEdit) {
@@ -92,6 +108,16 @@ if ($flagGoodToGo) {
 	} catch (Exception $e) {
 		echo $e->getMessage();
 	}
-
+require "footer.php";
+}
+else {
+	$conn = null;
+	echo "
+			<div class='container'>
+			<main>
+				<h3>Registration Failed</h3>
+				<p>{$errMassage}</p>
+			</main>
+			</div>";
 }
 
