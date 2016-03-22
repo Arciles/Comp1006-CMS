@@ -5,6 +5,8 @@
  * Date: 2016-03-22
  * Time: 3:49 PM
  */
+
+session_start();
 $userId = $_GET['id'];
 
 require_once "db-connection.php";
@@ -16,7 +18,6 @@ $cmd -> bindParam(":user_id",$userId,PDO::PARAM_INT);
 $cmd -> execute();
 $conn = null;
 
-session_start();
 if ($_SESSION['user_id'] == $userId){
 	session_destroy();
 	header("location:index.php");

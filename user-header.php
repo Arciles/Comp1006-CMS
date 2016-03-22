@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/custom.css">
-	<title><?php echo $pageTitle; ?></title>
+	<title><?php session_start(); echo $pageTitle; ?></title>
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top">
@@ -21,7 +21,7 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hashtag"></i> <?php session_start(); echo $_SESSION['fullname']; ?> <span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hashtag"></i> <?php echo $_SESSION['fullname']; ?> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
 						<li><a href="admin-list.php" title="link to admin page"><i class="fa fa-lock"></i> Admin Page</a> </li>

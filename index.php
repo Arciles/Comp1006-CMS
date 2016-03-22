@@ -1,6 +1,6 @@
 <?php
-$pageTitle = "Content Managment System | Arciles Inc.";
 session_start();
+$pageTitle = "Content Managment System | Arciles Inc.";
 if(!empty($_SESSION['fullname'])){
 	require "user-header.php";
 	echo "success";

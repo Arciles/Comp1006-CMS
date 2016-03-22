@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Created by PhpStorm.
  * User: esattahaibis
@@ -43,7 +44,7 @@ if ($flagEverythingOkay) {
 	if ($count == 0) {
 		echo "<h3>Invalid Username or Password. Please try again.</h3>";
 	} else {
-		session_start();
+
 		foreach ($datas as $user) {
 			$_SESSION['user_id'] = $user['user_id'];
 			$_SESSION['fullname'] = $user['fullname'];

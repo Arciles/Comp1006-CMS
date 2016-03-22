@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 /**
  * Created by PhpStorm.
  * User: esattahaibis
@@ -7,7 +7,6 @@
  */
 $pageTitle = "Register Page | Arciles Inc.";
 $pageName = "register";
-session_start();
 // If there is an id param use register page as edit page and check if is there a session if there is no session don't allow user to edit anything
 if (!empty($_GET['id']) && !empty($_SESSION['fullname'])){
 	// create a password flag

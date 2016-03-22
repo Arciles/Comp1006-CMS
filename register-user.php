@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 /**
  * Created by PhpStorm.
  * User: esattahaibis
@@ -6,7 +6,6 @@
  * Time: 9:31 PM
  */
 $pageTitle = "Information Page | Arciles Inc.";
-session_start();
 if(!empty($_SESSION['fullname'])){
 	require "user-header.php";
 	echo "success";
