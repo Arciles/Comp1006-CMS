@@ -24,6 +24,7 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hashtag"></i> <?php session_start(); echo $_SESSION['fullname']; ?> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
+						<li><a href="admin-list.php" title="link to admin page"><i class="fa fa-lock"></i> Admin Page</a> </li>
 						<li><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="log-out.php"><i class="fa fa-times"></i> Log out</a></li>

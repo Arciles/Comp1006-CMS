@@ -7,7 +7,35 @@
  */
 $pageTitle = "Register Page | Arciles Inc.";
 $pageName = "register";
-require "header.php";
+session_start();
+// If there is an id param use register page as edit page
+if (!empty($_GET['id']) && !empty($_SESSION['username'])){
+	// create a password flag
+	$passFlag = true;
+	// call user header beacuse user is already registered
+	require "user-header.php";
+	$userId = $_GET['id'];
+	require_once "db-connection.php";
+	// prepare query and execute command
+	$sql = "SELECT * FROM dbt_users WHERE user_id = :user_id";
+	$cmd = $conn -> prepare($sql);
+	// bind id param
+	$cmd -> bindParam("user_id",$userId,PDO::PARAM_INT);
+	$cmd -> execute();
+	$rows = $cmd ->fetchAll();
+	$conn = null;
+	// Loop thru user information
+
+	foreach ($rows as $row) {
+		$userName = $row['username'];
+		$fullName = $row['fullname'];
+		$email = $row['email'];
+		$birthday = $row['birthday'];
+	}
+
+} else {
+	require "header.php";
+}
 ?>
 <div class="container">
 	<main>
@@ -18,8 +46,9 @@ require "header.php";
 						<legend>User Info</legend>
 						<div class="form-group">
 							<label for="username">User name</label>
-							<input type="text" class="form-control" name="username" id="username" placeholder="JohnDoe123" required>
+							<input type="text" class="form-control" name="username" id="username" placeholder="JohnDoe123" required value="<?php echo $userName?>">
 							<label for="password">Password</label>
+							<?php echo ($passFlag) ? "<br><label class='label-warning'> You need to reset your password!!</label>" : "" ?>
 							<input type="text" class="form-control" name="password" id="password" placeholder="Password" required>
 							<label for="confirm">Confirm Password</label>
 							<input type="text" class="form-control" name="confirm" id="confirm" placeholder="Confirm Password" required>
@@ -30,11 +59,12 @@ require "header.php";
 						<legend>Personal Info</legend>
 						<div class="form-group">
 							<label for="fullname">Full Name</label>
-							<input type="text" class="form-control" name="fullname" id="fullname" placeholder="John Doe">
+							<input type="text" class="form-control" name="fullname" id="fullname" placeholder="John Doe" value="<?php echo $fullName?>">
 							<label for="email">E-mail</label>
-							<input type="email" class="form-control" name="email" id="email" placeholder="example123@example.ca">
+							<input type="email" class="form-control" name="email" id="email" placeholder="example123@example.ca" value="<?php echo $email?>">
 							<label for="birthday">Birthday</label>
-							<input type="date" class="form-control" name="birthday" id="birthday" max="<?php echo date('Y-m-d'); ?>">
+							<input type="date" class="form-control" name="birthday" id="birthday" max="<?php echo date('Y-m-d'); ?>" value="<?php echo $birthday?>">
+							<input type="hidden" name="user_id" value="<?php echo $userId?>">
 						</div>
 					</fieldset>
 					<button type="submit" class="btn btn-info pull-right">Submit</button>
