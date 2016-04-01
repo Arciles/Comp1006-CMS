@@ -16,6 +16,25 @@ if (document.getElementById("confirm")){
 	});
 }
 
+/*$('#adminNav a').click(function (e) {
+	e.preventDefault();
+	$(this).tab('show');
+});*/
+
 $('.confirmation').on('click', function(){
 	return confirm('Are you sure you wanna delete this record?');
+});
+
+
+$(function(){
+	if (!Modernizr.inputtypes.date) {
+		// If not native HTML5 support, fallback to jQuery datePicker
+		$('input[type=date]').datepicker({
+				// Consistent format with the HTML5 picker
+				dateFormat : 'yy-mm-dd'
+			},
+			// Localization
+			$.datepicker.regional['it']
+		);
+	}
 });

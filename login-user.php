@@ -48,8 +48,9 @@ if ($flagEverythingOkay) {
 		foreach ($datas as $user) {
 			$_SESSION['user_id'] = $user['user_id'];
 			$_SESSION['fullname'] = $user['fullname'];
-			echo "<h3>You successfully logged in.</h3>";
-			echo "<a href='index.php' class='btn-link' title=''>Home Page</a>";
+			/*echo "<h3>You successfully logged in.</h3>";
+			echo "<a href='index.php' class='btn-link' title=''>Home Page</a>";*/
+			die("<script>location.href = 'index.php'</script>");
 		}
 	}
 }

@@ -62,7 +62,7 @@ if (!empty($_GET['id']) && !empty($_SESSION['fullname'])){
 							<label for="email">E-mail</label>
 							<input type="email" class="form-control" name="email" id="email" placeholder="example123@example.ca" required value="<?php echo $email?>">
 							<label for="birthday">Birthday</label>
-							<input type="date" class="form-control" name="birthday" id="birthday" max="<?php echo date('Y-m-d'); ?>" value="<?php echo $birthday?>">
+							<input type="date" class="form-control" name="birthday" id="birthday" placeholder="Date" max="<?php echo date('Y-m-d'); ?>" value="<?php echo $birthday?>">
 							<input type="hidden" name="user_id" value="<?php echo $userId?>">
 						</div>
 					</fieldset>

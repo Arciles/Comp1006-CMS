@@ -46,18 +46,21 @@ if (!empty($user_id)) {
 
 // open db connection and check that email is already registered
 require_once "db-connection.php";
-$querry = "SELECT * FROM dbt_users WHERE email = :email OR username = :username";
-$check = $conn ->prepare($querry);
-$check -> bindParam(":email",$email,PDO::PARAM_STR);
-$check -> bindParam(":username",$userName,PDO::PARAM_STR);
-$check -> execute();
-$count = $check->rowCount();
-if($count == 0){
-	$flagGoodToGo = true;
-	var_dump($check->rowCount());
-} else {
-	$errMassage .= "Email or User name is already in use.";
-	$flagGoodToGo = false;
+if ($flagEdit == false){
+	$querry = "SELECT * FROM dbt_users WHERE email = :email OR username = :username";
+	$check = $conn ->prepare($querry);
+	$check -> bindParam(":email",$email,PDO::PARAM_STR);
+	$check -> bindParam(":username",$userName,PDO::PARAM_STR);
+	$check -> execute();
+	$count = $check->rowCount();
+	if($count == 0){
+		$flagGoodToGo = true;
+		var_dump($check->rowCount());
+	} else {
+		$errMassage .= "Email or User name is already in use.";
+		$flagGoodToGo = false;
+	}
+
 }
 
 // Proceed to save operation if everything is Okay
