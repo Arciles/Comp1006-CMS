@@ -1,4 +1,4 @@
-<?php
+<?php ob_start();
 session_start();
 /**
  * Created by PhpStorm.
@@ -8,20 +8,15 @@ session_start();
  * test
  */
 
-$pageTitle = "Successfully Login | Arciles Inc.";
-require "header.php";
-echo "<div class='container'> <main>";
 $userName = $_POST["username"];
 $password = $_POST["password"];
 $flagEverythingOkay = true;
 
 // Check variables. Pop a massage if variables are empty
 if (empty($userName)) {
-	echo "User name is required!";
 	$flagEverythingOkay = false;
 }
 if (empty($password)) {
-	echo "Password is required!";
 	$flagEverythingOkay = false;
 }
 // Check flag for everything is ready to go
@@ -42,17 +37,14 @@ if ($flagEverythingOkay) {
 	// check is data is valid. If it is, start the session
 
 	if ($count == 0) {
-		echo "<h3>Invalid Username or Password. Please try again.</h3>";
+		header("location: login-fail.php");
 	} else {
 
 		foreach ($datas as $user) {
 			$_SESSION['user_id'] = $user['user_id'];
 			$_SESSION['fullname'] = $user['fullname'];
-			/*echo "<h3>You successfully logged in.</h3>";
-			echo "<a href='index.php' class='btn-link' title=''>Home Page</a>";*/
-			die("<script>location.href = 'default.php'</script>");
+			header("location: default.php");
 		}
 	}
 }
-echo "</main> </div>";
-require "footer.php";
+ob_flush();

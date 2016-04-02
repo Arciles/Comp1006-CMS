@@ -24,7 +24,7 @@ require "header.php";
 								<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
 							</div>
 							<button type="submit" class="btn btn-primary pull-right">Login</button>
-							<a href="index.php" class="btn btn-danger pull-right">Cancel</a>
+							<a href="default.php" class="btn btn-danger pull-right">Cancel</a>
 						</form>
 					</div>
 				</div>

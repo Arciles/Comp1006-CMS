@@ -22,7 +22,7 @@ $conn = null;
 
 if ($_SESSION['user_id'] == $userId){
 	session_destroy();
-	header("location:index.php");
+	header("location:info.php");
 } else {
 	header("location:admin-list.php");
 }

@@ -14,7 +14,7 @@
 <div class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
-			<a href="index.php" class="navbar-brand"><i class="fa fa-mouse-pointer fa-lg"></i> Arciles CMS</a>
+			<a href="default.php" class="navbar-brand"><i class="fa fa-mouse-pointer fa-lg"></i> Arciles CMS</a>
 			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
