@@ -63,6 +63,7 @@ require "user-header.php";
 			</div>
 			<div class="tab-pane" id="Pages">
 				<h1>PAGEEEEEEEEEEEESSSSSSSSSSSS</h1>
+				<!--TODO: create pages list here-->
 			</div>
 		</div>
 	</main>

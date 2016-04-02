@@ -11,7 +11,7 @@
 <div class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
-			<a href="index.php" class="navbar-brand"><i class="fa fa-mouse-pointer fa-lg"></i> Arciles CMS</a>
+			<a href="default.php" class="navbar-brand"><i class="fa fa-mouse-pointer fa-lg"></i> Arciles CMS</a>
 			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -23,7 +23,7 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hashtag"></i> <?php echo $_SESSION['fullname']; ?> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
+						<li><a href="create-edit-pages.php"><i class="fa fa-plus-square-o"></i> Add Pages</a></li>
 						<li><a href="admin-list.php" title="link to admin page"><i class="fa fa-lock"></i> Admin Page</a> </li>
 						<li><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
 						<li role="separator" class="divider"></li>

@@ -50,7 +50,7 @@ if ($flagEverythingOkay) {
 			$_SESSION['fullname'] = $user['fullname'];
 			/*echo "<h3>You successfully logged in.</h3>";
 			echo "<a href='index.php' class='btn-link' title=''>Home Page</a>";*/
-			die("<script>location.href = 'index.php'</script>");
+			die("<script>location.href = 'default.php'</script>");
 		}
 	}
 }

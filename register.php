@@ -47,11 +47,11 @@ if (!empty($_GET['id']) && !empty($_SESSION['fullname'])){
 							<label for="username">User name</label>
 							<input type="text" class="form-control" name="username" id="username" placeholder="JohnDoe123" required value="<?php echo $userName?>">
 							<label for="password">Password</label>
-							<?php echo ($passFlag) ? "<br><label class='label-warning'> You need to reset your password!!</label>" : "" ?>
-							<input type="text" class="form-control" name="password" id="password" placeholder="Password" required>
+							<?php echo ($passFlag) ? "<br><label class='text-warning'> You need to reset your password!!</label>" : "" ?>
+							<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
 							<label for="confirm">Confirm Password</label>
-							<input type="text" class="form-control" name="confirm" id="confirm" placeholder="Confirm Password" required>
-							<label id="warning" class="label-warning">Your password needs to mach!!!</label>
+							<input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm Password" required>
+							<label id="warning" class="text-danger">Your password needs to mach!!!</label>
 						</div>
 					</fieldset>
 					<fieldset>

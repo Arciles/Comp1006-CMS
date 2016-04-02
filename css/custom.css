@@ -44,6 +44,25 @@ label#warning {
 a.btn-danger {
 	margin-right: 20px;
 }
+a.btn-warning {
+	margin-right: 20px;
+}
 tbody td {
 	vertical-align: middle !important;
 }
+
+#sideNavigation {
+	margin-top: 50px;
+}
+
+footer {
+	opacity: 0.85;
+}
+
+@media (min-width: 992px) {
+	#sideNavigation {
+		position: fixed;
+		width: 15%;
+	}
+}
+
