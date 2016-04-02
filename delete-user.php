@@ -7,6 +7,8 @@
  */
 
 session_start();
+require "auth.php";
+
 $userId = $_GET['id'];
 
 require_once "db-connection.php";

@@ -23,7 +23,7 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hashtag"></i> <?php echo $_SESSION['fullname']; ?> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="create-edit-pages.php"><i class="fa fa-plus-square-o"></i> Add Pages</a></li>
+						<li><a href="create-edit-pages.php"><i class="fa fa-plus"></i> Add Pages</a></li>
 						<li><a href="admin-list.php" title="link to admin page"><i class="fa fa-lock"></i> Admin Page</a> </li>
 						<li><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
 						<li role="separator" class="divider"></li>

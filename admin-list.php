@@ -8,6 +8,25 @@
 
 require "user-header.php";
 
+require_once "db-connection.php";
+
+
+// preapre sql and execute the command
+// This sql is for gettin all the users from database
+$sql = 'SELECT * FROM dbt_users';
+$cmd = $conn -> prepare($sql);
+$cmd -> execute();
+$users = $cmd ->fetchAll();
+
+// This query is for gettin all the pages information from database
+
+$sql = 'SELECT * FROM dbt_pages INNER JOIN dbt_users ON dbt_pages.author = dbt_users.user_id';
+$cmd = $conn -> prepare($sql);
+$cmd -> execute();
+$pages = $cmd ->fetchAll();
+
+$conn = null;
+
 ?>
 
 
@@ -36,25 +55,16 @@ require "user-header.php";
 					</thead>
 					<tbody>
 					<?php
-					require_once "db-connection.php";
-					// preapre sql and execute the command
-
-					$sql = 'SELECT * FROM dbt_users';
-					$cmd = $conn -> prepare($sql);
-					$cmd -> execute();
-					$rows = $cmd ->fetchAll();
-					$conn = null;
-
 					// Looping thru all the rows in the table
-					foreach ($rows as $row) {
+					foreach ($users as $user) {
 						echo "	<tr>
-									<td>{$row['user_id']}</td>
-									<td>{$row['username']}</td>
-									<td>{$row['fullname']}</td>
-									<td>{$row['email']}</td>
-									<td>{$row['birthday']}</td>
-									<td><a href='register.php?id={$row['user_id']}' class='btn btn-warning'>Edit</a></td>
-									<td><a href='delete-user.php?id={$row['user_id']}' class='btn btn-danger confirmation'>Delete</a></td>
+									<td>{$user['user_id']}</td>
+									<td>{$user['username']}</td>
+									<td>{$user['fullname']}</td>
+									<td>{$user['email']}</td>
+									<td>{$user['birthday']}</td>
+									<td><a href='register.php?id={$user['user_id']}' class='btn btn-warning'>Edit</a></td>
+									<td><a href='delete-user.php?id={$user['user_id']}' class='btn btn-danger confirmation'>Delete</a></td>
 								</tr>";
 					}
 					?>
@@ -62,8 +72,37 @@ require "user-header.php";
 				</table>
 			</div>
 			<div class="tab-pane" id="Pages">
-				<h1>PAGEEEEEEEEEEEESSSSSSSSSSSS</h1>
 				<!--TODO: create pages list here-->
+				<h1>All Pages</h1>
+				<table class="table table-striped">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>Page Title</th>
+						<th>Article Title</th>
+						<th>Author</th>
+						<th>Create Date</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+					</thead>
+					<tbody>
+					<?php
+					// Looping thru all the rows in the table
+					foreach ($pages as $page) {
+						echo "	<tr>
+									<td>{$page['id']}</td>
+									<td>{$page['page_title']}</td>
+									<td>{$page['article_title']}</td>
+									<td>{$page['fullname']}</td>
+									<td>{$page['create_time']}</td>
+									<td><a href='create-edit-pages.php?id={$page['id']}' class='btn btn-warning'>Edit</a></td>
+									<td><a href='delete-page.php?id={$page['id']}' class='btn btn-danger confirmation'>Delete</a></td>
+								</tr>";
+					}
+					?>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</main>
