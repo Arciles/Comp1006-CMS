@@ -58,7 +58,9 @@ tbody td {
 footer {
 	opacity: 0.85;
 }
-
+.panel-body {
+	min-height: 40vh;
+}
 @media (min-width: 992px) {
 	#sideNavigation {
 		position: fixed;

@@ -49,7 +49,7 @@ if ($flagOk){
 					</div>
 					<div class="form-group">
 						<label for="article-text">Enter Your text</label>
-						<textarea id="article-text" name="article-text" class="form-control" maxlength="1000" rows="6"><?php echo $_articleText; ?></textarea>
+						<textarea id="article-text" name="article-text" class="form-control" rows="6"><?php echo $_articleText; ?></textarea>
 					</div>
 					<input type="hidden" name="datetime" value="<?php echo date("Y-m-d H:i:s"); ?>">
 					<input type="hidden" name="page-id" value="<?php echo $pageID; ?>">
