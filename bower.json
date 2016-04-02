@@ -1,0 +1,25 @@
+{
+  "name": "Comp1006-Assigment2-Part2",
+  "homepage": "https://github.com/Arciles/Comp1006-CMS",
+  "authors": [
+    "Esat IBIS <esat.taha.ibis@gmail.com>"
+  ],
+  "description": "content managment site for general use",
+  "main": "index.php",
+  "moduleType": [],
+  "keywords": [
+    "CMS"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.2"
+  }
+}
