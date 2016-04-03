@@ -46,25 +46,39 @@ a.btn-danger {
 }
 a.btn-warning {
 	margin-right: 20px;
+	margin-left: 20px ;
 }
 tbody td {
 	vertical-align: middle !important;
 }
 
 #sideNavigation {
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 footer {
 	opacity: 0.85;
 }
-.panel-body {
+.col-md-9 .panel-body {
 	min-height: 40vh;
 }
+
 @media (min-width: 992px) {
 	#sideNavigation {
 		position: fixed;
 		width: 15%;
 	}
+}
+textarea {
+	min-height: 200px;
+	min-width: 100%;
+}
+.jumbotron {
+	margin-top: 200px;
+	text-align: center;
+}
+.error-actions a {
+	margin-right: 30px;
+	margin-top: 20px;
 }
 

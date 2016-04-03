@@ -1,0 +1,3 @@
+DirectoryIndex default.php
+ErrorDocument 404 /Comp1006-Assigment2-Part2/404.php
+ErrorDocument 500 /Comp1006-Assigment2-Part2/500.php
