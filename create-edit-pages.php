@@ -14,7 +14,6 @@ if (!empty($_GET['id']) && !empty($_SESSION['fullname'])) {
 	$flagOk = false;
 }
 if ($flagOk){
-	require_once "db-connection.php";
 
 	// Select page comes with and ID
 	$sql = 'SELECT * FROM dbt_pages INNER JOIN dbt_users ON dbt_pages.author = dbt_users.user_id WHERE id = :id';
@@ -44,7 +43,7 @@ if ($flagOk){
 						<input type="text" class="form-control" id="page-title" name="page-title" maxlength="25" value="<?php echo $_pageTitle; ?>">
 					</div>
 					<div class="form-group">
-						<label for="article-title">Enter Article Tiele</label>
+						<label for="article-title">Enter Article Title</label>
 						<input type="text" class="form-control" id="article-title" name="article-title" maxlength="45" value="<?php echo $_articleTitle; ?>">
 					</div>
 					<div class="form-group">

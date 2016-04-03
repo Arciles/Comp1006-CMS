@@ -8,8 +8,6 @@
 
 require "user-header.php";
 
-require_once "db-connection.php";
-
 
 // preapre sql and execute the command
 // This sql is for gettin all the users from database
@@ -25,8 +23,26 @@ $cmd = $conn -> prepare($sql);
 $cmd -> execute();
 $pages = $cmd ->fetchAll();
 
-$conn = null;
 
+
+if (!empty($_FILES['site-image']['name'])) {
+	$logoName = $_FILES['site-image']['name'];
+	$type = $_FILES['site-image']['type'];
+
+	if ($type == "image/png" || $type == "image/jpeg"){
+		$finalName = session_id() . "-" .$logoName;
+		move_uploaded_file($_FILES['site-image']['tmp_name'], "image/$finalName");
+	}else {
+		$errMessage = "Logo must be a JPG or PNG";
+		$isOkay = false;
+	}
+	$sql = 'INSERT INTO dbt_site_image (image_name, image_address) VALUE (:image_name, :image_address)';
+	$cmd = $conn -> prepare($sql);
+	$cmd -> bindParam(":image_name",$logoName,PDO::PARAM_STR);
+	$cmd -> bindParam(":image_address", $finalName, PDO::PARAM_STR);
+	$cmd -> execute();
+}
+$conn = null;
 ?>
 
 
@@ -36,9 +52,11 @@ $conn = null;
 			<ul id="adminNav" class="nav nav-tabs" data-tabs="tabs">
 				<li class="active"><a href="#Users" data-toggle="tab">Users</a></li>
 				<li><a href="#Pages" data-toggle="tab">Pages</a></li>
+				<li><a href="#PageImage" data-toggle="tab">Brand Image</a></li>
 			</ul>
 		</nav>
 		<div class="tab-content">
+			<!--Users Section-->
 			<div class="tab-pane active" id="Users">
 				<h1>All Users</h1>
 				<table class="table table-striped">
@@ -71,6 +89,8 @@ $conn = null;
 					</tbody>
 				</table>
 			</div>
+
+			<!--Pages Section-->
 			<div class="tab-pane" id="Pages">
 				<!--TODO: create pages list here-->
 				<h1>All Pages</h1>
@@ -103,6 +123,29 @@ $conn = null;
 					?>
 					</tbody>
 				</table>
+			</div>
+
+			<!--Page Image Upload Section-->
+			<div class="tab-pane" id="PageImage">
+				<!--TODO: create pages list here-->
+				<h1>Upload Brand Image</h1>
+				<div class="row">
+					<div class="col-md-4">
+						<form action="admin-list.php" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="imageUpload">Select your image ( squre images for best result ) </label>
+								<input type="file" name="site-image" id="imageUpload">
+							</div>
+							<br>
+							<button class="btn btn-success">Upload</button>
+						</form>
+					</div>
+					<label class="text-danger"><?php echo $errMessage; ?></label>
+					<div class="col-md-5 col-md-offset-2">
+						<img src="" class="thumbnail" width="500" id="image" alt="Image preview for user">
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</main>

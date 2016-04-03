@@ -45,20 +45,39 @@ if (!empty($user_id)) {
 }
 
 // open db connection and check that email is already registered
-require_once "db-connection.php";
 if ($flagEdit == false){
-	$querry = "SELECT * FROM dbt_users WHERE email = :email OR username = :username";
-	$check = $conn ->prepare($querry);
+	$query = "SELECT * FROM dbt_users WHERE email = :email OR username = :username";
+	$check = $conn ->prepare($query);
 	$check -> bindParam(":email",$email,PDO::PARAM_STR);
 	$check -> bindParam(":username",$userName,PDO::PARAM_STR);
 	$check -> execute();
 	$count = $check->rowCount();
 	if($count == 0){
 		$flagGoodToGo = true;
-		var_dump($check->rowCount());
 	} else {
 		$errMassage .= "Email or User name is already in use.";
 		$flagGoodToGo = false;
+	}
+
+} else {
+
+	$query = "SELECT * FROM dbt_users WHERE email = :email OR username = :username";
+	$check = $conn ->prepare($query);
+	$check -> bindParam(":email",$email,PDO::PARAM_STR);
+	$check -> bindParam(":username",$userName,PDO::PARAM_STR);
+	$check -> execute();
+	$count = $check->rowCount();
+	$data = $check ->fetch();
+
+	if($count == 0){
+		$flagGoodToGo = true;
+	} else {
+		if ($data['user_id'] == $user_id) {
+			$flagGoodToGo = true;
+		} else {
+			$flagGoodToGo = false;
+			$errMassage = "Email or User name is already in use.";
+		}
 	}
 
 }
@@ -110,7 +129,6 @@ if ($flagGoodToGo) {
 	} catch (Exception $e) {
 		echo $e->getMessage();
 	}
-require "footer.php";
 }
 else {
 	$conn = null;
@@ -122,4 +140,5 @@ else {
 			</main>
 			</div>";
 }
+require "footer.php";
 

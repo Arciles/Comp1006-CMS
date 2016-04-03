@@ -25,7 +25,7 @@ $('.confirmation').on('click', function(){
 	return confirm('Are you sure you wanna delete this record?');
 });
 
-
+// Brings jQuery UI date picker for browser that not supports native date picker
 $(function(){
 	if (!Modernizr.inputtypes.date) {
 		// If not native HTML5 support, fallback to jQuery datePicker
@@ -38,3 +38,18 @@ $(function(){
 		);
 	}
 });
+
+// This code is getting image and preview it to the user before upload
+document.getElementById("imageUpload").onchange = function () {
+	var reader = new FileReader();
+	
+	reader.onload = function (e) {
+		// get loaded data and render thumbnail.
+		var img = document.getElementById("image");
+		img.style.visibility = "visible" ;
+		img.src = e.target.result;
+	};
+	
+	// read the image file as a data URL.
+	reader.readAsDataURL(this.files[0]);
+};

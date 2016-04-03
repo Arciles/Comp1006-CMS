@@ -14,7 +14,6 @@ if(!empty($_SESSION['fullname'])){
 } else {
 	require "header.php";
 }
-require_once "db-connection.php";
 
 $sql = "SELECT id, page_title FROM dbt_pages ORDER BY id";
 $cmd = $conn->prepare($sql);

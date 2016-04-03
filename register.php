@@ -14,7 +14,6 @@ if (!empty($_GET['id']) && !empty($_SESSION['fullname'])){
 	// call user header beacuse user is already registered
 	require "user-header.php";
 	$userId = $_GET['id'];
-	require_once "db-connection.php";
 	// prepare query and execute command
 	$sql = "SELECT * FROM dbt_users WHERE user_id = :user_id";
 	$cmd = $conn -> prepare($sql);

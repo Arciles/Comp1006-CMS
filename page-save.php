@@ -7,7 +7,7 @@
  */
 
 require "auth.php";
-require "db-connection.php";
+require_once "db-connection.php";
 session_start();
 $_pageID = $_POST["page-id"];
 $_pageTitle = $_POST["page-title"];
