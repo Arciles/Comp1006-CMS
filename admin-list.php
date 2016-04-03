@@ -23,25 +23,6 @@ $cmd = $conn -> prepare($sql);
 $cmd -> execute();
 $pages = $cmd ->fetchAll();
 
-
-
-if (!empty($_FILES['site-image']['name'])) {
-	$logoName = $_FILES['site-image']['name'];
-	$type = $_FILES['site-image']['type'];
-
-	if ($type == "image/png" || $type == "image/jpeg"){
-		$finalName = session_id() . "-" .$logoName;
-		move_uploaded_file($_FILES['site-image']['tmp_name'], "image/$finalName");
-	}else {
-		$errMessage = "Logo must be a JPG or PNG";
-		$isOkay = false;
-	}
-	$sql = 'INSERT INTO dbt_site_image (image_name, image_address) VALUE (:image_name, :image_address)';
-	$cmd = $conn -> prepare($sql);
-	$cmd -> bindParam(":image_name",$logoName,PDO::PARAM_STR);
-	$cmd -> bindParam(":image_address", $finalName, PDO::PARAM_STR);
-	$cmd -> execute();
-}
 $conn = null;
 ?>
 
@@ -124,14 +105,13 @@ $conn = null;
 					</tbody>
 				</table>
 			</div>
-
 			<!--Page Image Upload Section-->
 			<div class="tab-pane" id="PageImage">
 				<!--TODO: create pages list here-->
 				<h1>Upload Brand Image</h1>
 				<div class="row">
 					<div class="col-md-4">
-						<form action="admin-list.php" method="post" enctype="multipart/form-data">
+						<form action="save-image.php" method="post" enctype="multipart/form-data">
 							<div class="form-group">
 								<label for="imageUpload">Select your image ( squre images for best result ) </label>
 								<input type="file" name="site-image" id="imageUpload">
