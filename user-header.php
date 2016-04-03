@@ -1,6 +1,15 @@
 <?php 
 require_once "db-connection.php";
+$sql = "SELECT * FROM dbt_site_image";
+$cmd = $conn -> prepare($sql);
+$cmd -> execute();
+$count = $cmd->rowCount();
 
+if ($count == 0) {
+
+} else {
+	 $brandImg = $cmd->fetch()["image_address"];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +24,13 @@ require_once "db-connection.php";
 <div class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
-			<a href="default.php" class="navbar-brand"><i class="fa fa-mouse-pointer fa-lg"></i> Arciles CMS</a>
+			<a href="default.php" class="navbar-brand <?php echo (!empty($brandImg)) ? "image-class" : ""; ?>"><?php
+				if (!empty($brandImg)){
+					echo "<img class='brand-image' src='image/$brandImg' alt='Brand Image' height='50' width='50'>";
+				} else {
+					echo "<i class=\"fa fa-mouse-pointer fa-lg\"></i>";
+				}
+				?>      Arciles CMS</a>
 			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
