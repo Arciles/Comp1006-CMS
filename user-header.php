@@ -1,4 +1,5 @@
-<?php 
+<?php
+require "auth.php";
 require_once "db-connection.php";
 $sql = "SELECT * FROM dbt_site_image";
 $cmd = $conn -> prepare($sql);
