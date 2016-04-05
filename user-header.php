@@ -45,7 +45,6 @@ if ($count == 0) {
 					<ul class="dropdown-menu">
 						<li><a href="create-edit-pages.php"><i class="fa fa-plus"></i> Add Pages</a></li>
 						<li><a href="admin-list.php" title="link to admin page"><i class="fa fa-lock"></i> Admin Page</a> </li>
-						<li><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="log-out.php"><i class="fa fa-times"></i> Log out</a></li>
 					</ul>
