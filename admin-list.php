@@ -8,22 +8,26 @@
 
 require "user-header.php";
 
-
-// preapre sql and execute the command
+try {
+	// preapre sql and execute the command
 // This sql is for gettin all the users from database
-$sql = 'SELECT * FROM dbt_users';
-$cmd = $conn -> prepare($sql);
-$cmd -> execute();
-$users = $cmd ->fetchAll();
+	$sql = 'SELECT * FROM dbt_users';
+	$cmd = $conn -> prepare($sql);
+	$cmd -> execute();
+	$users = $cmd ->fetchAll();
 
 // This query is for gettin all the pages information from database
+	
+	$sql = 'SELECT * FROM dbt_pages INNER JOIN dbt_users ON dbt_pages.author = dbt_users.user_id';
+	$cmd = $conn -> prepare($sql);
+	$cmd -> execute();
+	$pages = $cmd ->fetchAll();
+	
+	$conn = null;
+} catch (Exception $e) {
+	mail("esat.taha.ibis@outlook.com","CMS Error",$e->getMessage());
+}
 
-$sql = 'SELECT * FROM dbt_pages INNER JOIN dbt_users ON dbt_pages.author = dbt_users.user_id';
-$cmd = $conn -> prepare($sql);
-$cmd -> execute();
-$pages = $cmd ->fetchAll();
-
-$conn = null;
 ?>
 
 

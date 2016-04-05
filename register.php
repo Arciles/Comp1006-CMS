@@ -7,32 +7,38 @@
  */
 $pageTitle = "Register Page | Arciles Inc.";
 $pageName = "register";
-// If there is an id param use register page as edit page and check if is there a session if there is no session don't allow user to edit anything
-if (!empty($_GET['id']) && !empty($_SESSION['fullname'])){
-	// create a password flag
-	$passFlag = true;
-	// call user header beacuse user is already registered
-	require "user-header.php";
-	$userId = $_GET['id'];
-	// prepare query and execute command
-	$sql = "SELECT * FROM dbt_users WHERE user_id = :user_id";
-	$cmd = $conn -> prepare($sql);
-	// bind id param
-	$cmd -> bindParam("user_id",$userId,PDO::PARAM_INT);
-	$cmd -> execute();
-	$rows = $cmd ->fetchAll();
-	$conn = null;
-	// Loop thru user information
 
-	foreach ($rows as $row) {
-		$userName = $row['username'];
-		$fullName = $row['fullname'];
-		$email = $row['email'];
-		$birthday = $row['birthday'];
+try {
+	// If there is an id param use register page as edit page and check if is there a session if there is no session don't allow user to edit anything
+	if (!empty($_GET['id']) && !empty($_SESSION['fullname'])){
+		// create a password flag
+		$passFlag = true;
+		// call user header beacuse user is already registered
+		require "user-header.php";
+		$userId = $_GET['id'];
+		// prepare query and execute command
+		$sql = "SELECT * FROM dbt_users WHERE user_id = :user_id";
+		$cmd = $conn -> prepare($sql);
+		// bind id param
+		$cmd -> bindParam("user_id",$userId,PDO::PARAM_INT);
+		$cmd -> execute();
+		$rows = $cmd ->fetchAll();
+		$conn = null;
+		// Loop thru user information
+		
+		foreach ($rows as $row) {
+			$userName = $row['username'];
+			$fullName = $row['fullname'];
+			$email = $row['email'];
+			$birthday = $row['birthday'];
+		}
+		
+	} else {
+		require "header.php";
 	}
-
-} else {
-	require "header.php";
+	
+} catch (Exception $e) {
+	mail("esat.taha.ibis@outlook.com","CMS Error",$e->getMessage());
 }
 ?>
 <div class="container">
@@ -71,4 +77,4 @@ if (!empty($_GET['id']) && !empty($_SESSION['fullname'])){
 		</div>
 	</main>
 </div>
-<?php require "footer.php"; ?>
+<?php require "footer.php";

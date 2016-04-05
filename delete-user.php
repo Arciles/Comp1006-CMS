@@ -8,25 +8,31 @@
 
 session_start();
 require "auth.php";
-
-$userId = $_GET['id'];
-
 require_once "db-connection.php";
 
-$sql = "DELETE FROM dbt_users WHERE user_id= :user_id";
-
-$cmd = $conn -> prepare($sql);
-$cmd -> bindParam(":user_id",$userId,PDO::PARAM_INT);
-$cmd -> execute();
-$conn = null;
-
-if ($_SESSION['user_id'] == $userId){
-	session_destroy();
-	header("location:info.php");
-} else {
-	header("location:admin-list.php");
+try {
+	
+	$userId = $_GET['id'];
+	
+	$sql = "DELETE FROM dbt_users WHERE user_id= :user_id";
+	
+	$cmd = $conn -> prepare($sql);
+	$cmd -> bindParam(":user_id",$userId,PDO::PARAM_INT);
+	$cmd -> execute();
+	$conn = null;
+	
+	if ($_SESSION['user_id'] == $userId){
+		session_destroy();
+		header("location:info.php");
+	} else {
+		header("location:admin-list.php");
+	}
+	
+	
+	
+	
+} catch (Exception $e) {
+	mail("esat.taha.ibis@outlook.com","CMS Error",$e->getMessage());
 }
-
-
 
 ob_flush();

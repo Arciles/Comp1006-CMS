@@ -7,17 +7,20 @@
  */
 require "auth.php";
 require_once "db-connection.php";
+try {
+	$pageID = $_GET['id'];
 
-$pageID = $_GET['id'];
+	$sql = "DELETE FROM dbt_pages WHERE id = :page_id";
+	$cmd = $conn -> prepare($sql);
 
-$sql = "DELETE FROM dbt_pages WHERE id = :page_id";
-$cmd = $conn -> prepare($sql);
+	$cmd -> bindParam(":page_id",$pageID,PDO::PARAM_INT);
+	$cmd->execute();
 
-$cmd -> bindParam(":page_id",$pageID,PDO::PARAM_INT);
-$cmd->execute();
+	$conn = null;
 
-$conn = null;
+	header("location: admin-list.php");
 
-header("location: admin-list.php");
-
+} catch (Exception $e) {
+	mail("esat.taha.ibis@outlook.com","CMS Error",$e->getMessage());
+}
 ob_flush();

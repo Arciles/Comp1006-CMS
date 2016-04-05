@@ -8,30 +8,35 @@
 
 $pageTitle = "Welcome | Arciles Inc.";
 session_start();
-if(!empty($_SESSION['fullname'])){
-	require "user-header.php";
-	echo "success";
-} else {
-	require "header.php";
+try {
+	if(!empty($_SESSION['fullname'])){
+		require "user-header.php";
+		echo "success";
+	} else {
+		require "header.php";
+	}
+	
+	$sql = "SELECT id, page_title FROM dbt_pages ORDER BY id";
+	$cmd = $conn->prepare($sql);
+	$cmd ->execute();
+	$pages = $cmd->fetchAll();
+	
+	$pageNumber = $pages[0]['id'];
+	
+	if (!empty($_GET["number"])){
+		$pageNumber = $_GET["number"];
+	}
+	
+	$sql = "SELECT * FROM dbt_pages WHERE id = :id";
+	$cmd = $conn->prepare($sql);
+	$cmd ->bindParam(":id",$pageNumber,PDO::PARAM_INT);
+	$cmd ->execute();
+	$pageInfo = $cmd->fetch();
+	$conn = null;
+} catch (Exception $e) {
+	mail("esat.taha.ibis@outlook.com","CMS Error",$e->getMessage());
 }
 
-$sql = "SELECT id, page_title FROM dbt_pages ORDER BY id";
-$cmd = $conn->prepare($sql);
-$cmd ->execute();
-$pages = $cmd->fetchAll();
-
-$pageNumber = $pages[0]['id'];
-
-if (!empty($_GET["number"])){
-	$pageNumber = $_GET["number"];
-}
-
-$sql = "SELECT * FROM dbt_pages WHERE id = :id";
-$cmd = $conn->prepare($sql);
-$cmd ->bindParam(":id",$pageNumber,PDO::PARAM_INT);
-$cmd ->execute();
-$pageInfo = $cmd->fetch();
-$conn = null;
 ?>
 <div class="container">
 	<main>

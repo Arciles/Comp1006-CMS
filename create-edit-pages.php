@@ -8,27 +8,32 @@
 $pageTitle = "Create Pages | Arciles Inc.";
 require "user-header.php";
 $flagOk = true;
-if (!empty($_GET['id']) && !empty($_SESSION['fullname'])) {
-	$pageID = $_GET['id'];
-}else{
-	$flagOk = false;
-}
-if ($flagOk){
 
-	// Select page comes with and ID
-	$sql = 'SELECT * FROM dbt_pages INNER JOIN dbt_users ON dbt_pages.author = dbt_users.user_id WHERE id = :id';
-	$cmd = $conn -> prepare($sql);
-	$cmd->bindParam(":id",$pageID,PDO::PARAM_INT);
-	$cmd -> execute();
-	$pages = $cmd ->fetchAll();
-	$conn = null;
-
-	foreach ($pages as $page){
-		$_pageTitle = $page["page_title"];
-		$_articleTitle = $page["article_title"];
-		$_articleText = $page["article_text"];
+try {
+	if (!empty($_GET['id']) && !empty($_SESSION['fullname'])) {
+		$pageID = $_GET['id'];
+	}else{
+		$flagOk = false;
 	}
-
+	if ($flagOk){
+		
+		// Select page comes with and ID
+		$sql = 'SELECT * FROM dbt_pages INNER JOIN dbt_users ON dbt_pages.author = dbt_users.user_id WHERE id = :id';
+		$cmd = $conn -> prepare($sql);
+		$cmd->bindParam(":id",$pageID,PDO::PARAM_INT);
+		$cmd -> execute();
+		$pages = $cmd ->fetchAll();
+		$conn = null;
+		
+		foreach ($pages as $page){
+			$_pageTitle = $page["page_title"];
+			$_articleTitle = $page["article_title"];
+			$_articleText = $page["article_text"];
+		}
+		
+	}
+} catch (Exception $e) {
+	mail("esat.taha.ibis@outlook.com","CMS Error",$e->getMessage());
 }
 
 ?>
